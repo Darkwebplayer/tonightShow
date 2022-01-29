@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon",
-    "migrate": "npx knex migrate:latest --knexfile db/knexfile.js"
+    "migrate": "npx knex migrate:latest --knexfile db/knexfile.js",
+    "start": "node index.js"
   },
   "license": "MIT",
   "dependencies": {
