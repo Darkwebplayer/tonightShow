@@ -5,25 +5,25 @@ const Dao = require("./dao/movie");
 /*
 GET TOP 250
 */
-// function fetch() {
-//   return new Promise(function (resolve, reject) {
-//     IMDb.topMovies((details) => {
-//       resolve(details);
-//     });
-//   });
-// }
+function fetch() {
+  return new Promise(function (resolve, reject) {
+    IMDb.topMovies((details) => {
+      resolve(details);
+    });
+  });
+}
 
-// async function getTop() {
-//   let movies = await fetch();
+async function getTop() {
+  let movies = await fetch();
 
-//   return new Promise((resolve, reject) => {
-//     let mov = [];
-//     movies.forEach((movie) => {
-//       mov.push(movie.id);
-//     });
-//     resolve(mov);
-//   });
-// }
+  return new Promise((resolve, reject) => {
+    let mov = [];
+    movies.forEach((movie) => {
+      mov.push(movie.id);
+    });
+    resolve(mov);
+  });
+}
 
 const imdb = require("imdb-api");
 
