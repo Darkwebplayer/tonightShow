@@ -1,14 +1,19 @@
 const db = require("../db/db");
 class userDao {
   async createUser(username, email, password) {
-    const [id] = await db("users")
-      .insert({
-        username,
-        email,
-        password,
-      })
-      .returning("id");
-    return id;
+    try {
+      const [id] = await db("users")
+        .insert({
+          username,
+          email,
+          password,
+        })
+        .returning("id");
+      return id;
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
   }
   async getUser(id) {
     const res = await db.from("users").select().where({ id: id });
