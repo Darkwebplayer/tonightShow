@@ -63,7 +63,7 @@ const Movies = async () => {
   let movieid = movie[0];
   let { rating, imdbid, name } = await imdb.get(
     { id: movieid.id },
-    { apiKey: process.env.IMDB_API_KEY }
+    { apiKey: `${process.env.IMDB_API_KEY}` }
   );
   console.log(rating, imdbid, name);
 };
