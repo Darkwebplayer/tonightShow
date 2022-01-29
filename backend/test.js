@@ -20,7 +20,6 @@ const moviedb = new MovieDb(process.env.TMDB_API_KEY);
 const getMovies = async () => {
   const movieId = fetch()
     .then((res) => {
-      console.log(res);
       res.forEach((movie) => {
         moviedb
           .find({ id: movie.id, external_source: "imdb_id" })
