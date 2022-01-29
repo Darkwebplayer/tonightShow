@@ -4,10 +4,10 @@ const cookieParser = require("cookie-parser");
 require("dotenv").config();
 const cors = require("cors");
 const corsOptions = {
-  origin: `${process.env.CLIENT_ADDRESS}`,
+  origin: process.env.CLIENT_ADDRESS,
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
-console.log(process.env);
+
 const userRoute = require("./routes/users");
 const movieRoute = require("./routes/movies");
 const authRoute = require("./routes/authentication");
