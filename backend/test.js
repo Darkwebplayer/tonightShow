@@ -29,7 +29,7 @@ const imdb = require("imdb-api");
 
 const insertIntoTable = async (id) => {
   let { rating, imdbid, name } = await imdb
-    .get({ id: id }, { apiKey: process.env.IMDB_API_KEY })
+    .get({ id: id }, { apiKey: `${process.env.IMDB_API_KEY}` })
     .then((res) => res)
     .catch((err) => {
       console.log(err);
