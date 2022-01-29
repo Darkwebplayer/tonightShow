@@ -1,1 +1,1 @@
- node /backend/index.js
+ web: yarn run dev
