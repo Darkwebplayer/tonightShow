@@ -23,6 +23,6 @@ app.get("/", (req, res) => {
   res.send("hi");
 });
 
-app.listen(.listen(process.env.PORT || 5000), () => {
+app.listen(process.env.PORT || 5000), () => {
   console.log("server running ");
 });
