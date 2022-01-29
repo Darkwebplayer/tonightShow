@@ -7,9 +7,11 @@ module.exports = {
   development: {
     client: "postgresql",
     connection: {
-      database: "tonightshowdb",
-      user: "postgres",
-      password: "u2bechannel",
+      host: "ec2-18-209-169-66.compute-1.amazonaws.com",
+      database: "d2fo63cjktekk2",
+      user: "pztyooyuzwxfgt",
+      password:
+        "caa68bf3c272126289ee05cde81e3580d4106f718f268e318414ff190af4663b",
     },
   },
 
