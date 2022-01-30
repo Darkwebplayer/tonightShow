@@ -11,9 +11,9 @@ const getters = {
 const actions = {
   async fetchMovie({ commit }) {
     let API_URL = `${import.meta.env.VITE_BASE_API_URL}/movies`;
-    console.log(API_URL);
-    const { data } = await axios.post(API_URL, { watchedMovies: [1, 2, 3] });
 
+    const { data } = await axios.post(API_URL, { watchedMovies: [1, 2, 3] });
+    console.log(data);
     commit("setMovie", data);
   },
 };
