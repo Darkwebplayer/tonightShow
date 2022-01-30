@@ -22,5 +22,14 @@ class movieDao {
 
     return res;
   }
+  async getAll() {
+    try {
+      const res = await db.from("movies").select();
+      console.log(res);
+      return res;
+    } catch (err) {
+      console.log(err);
+    }
+  }
 }
 module.exports = new movieDao();
