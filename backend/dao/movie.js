@@ -14,6 +14,7 @@ class movieDao {
     return id;
   }
   async getMovie(id) {
+    console.log(id);
     const res = await db
       .from("movies")
       .select()
