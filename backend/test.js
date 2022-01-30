@@ -1,17 +1,17 @@
-// const IMDb = require("imdb-light");
-// require("dotenv").config();
+const IMDb = require("imdb-light");
+require("dotenv").config();
 const Dao = require("./dao/movie");
 
-// /*
-// GET TOP 250
-// */
-// function fetch() {
-//   return new Promise(function (resolve, reject) {
-//     IMDb.topMovies((details) => {
-//       resolve(details);
-//     });
-//   });
-// }
+/*
+GET TOP 250
+*/
+function fetch() {
+  return new Promise(function (resolve, reject) {
+    IMDb.topMovies((details) => {
+      resolve(details);
+    });
+  });
+}
 
 const { MovieDb } = require("moviedb-promise");
 
