@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
+const Dao = require("./dao/movie");
 const cors = require("cors");
 const corsOptions = {
   origin: process.env.CLIENT_ADDRESS,
@@ -18,6 +19,7 @@ app.use(userRoute);
 app.use(movieRoute);
 app.use(authRoute);
 app.get("/", (req, res) => {
+  const rest = Dao.getAll();
   res.send("hi");
 });
 
