@@ -10,9 +10,11 @@
     <div class="mx-auto max-w-2xl text-center">
       <ul class="mx-auto text-white font-bold py-3">
         <li>Rating : {{ movieData.rating }} &#x2B50;</li>
-        <li>Director : {{ movieData.director }}</li>
-        <li>Cast : {{ movieData.actors }}</li>
-        <li>Genre : {{ movieData.genres }}</li>
+        <!-- <li>Director : {{ movieData.director }}</li>
+        <li>Cast : {{ movieData.actors }}</li> -->
+        <li>
+          Genre : <span :v-for="genres in movieData.genres">{{ genres }}</span>
+        </li>
       </ul>
       <div class="text-white py-3">
         <span class="font-bold">Plot</span>:{{ movieData.plot }}
