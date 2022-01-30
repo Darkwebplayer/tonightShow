@@ -79,7 +79,7 @@ export default {
       }
       let dataURL = canvas.value.toDataURL("image/png");
       promoFile.value = dataURItoBlob(dataURL);
-      console.log(file);
+      console.log(promoFile.value);
     });
     const shareMovie = async () => {
       try {
