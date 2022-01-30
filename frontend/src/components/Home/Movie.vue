@@ -12,13 +12,16 @@
         <li>Rating : {{ movieData.rating }} &#x2B50;</li>
         <!-- <li>Director : {{ movieData.director }}</li>
         <li>Cast : {{ movieData.actors }}</li> -->
-        <ul>
+        <ul class="flex flex-wrap">
           Genre :
           <li class="px-3" v-for="genre in movieData.genres" :key="genre.id">
             {{ genre.name }}
           </li>
         </ul>
       </ul>
+      <div class="">
+        <button-large btnText="New Movie &#x267B;" @click="$emit('another')" />
+      </div>
       <div class="text-white py-3">
         <span class="font-bold">Plot</span>:{{ movieData.plot }}
       </div>
@@ -28,21 +31,63 @@
     </div>
   </div>
   <div class="text-center text-white font-bold" v-if="loading">LOADING</div>
+  <canvas class="" ref="canvas">
+    <img :src="movieData.poster" alt="" class="w-72 mx-auto my-5 rounded-md"
+  /></canvas>
 </template>
 <script>
-import { computed } from "@vue/runtime-core";
+import { computed, onMounted, ref } from "@vue/runtime-core";
+import ButtonLarge from "../ButtonLarge.vue";
 export default {
   props: ["movieData", "loading"],
-  components: {},
+  components: { ButtonLarge },
+  emits: ["another"],
   setup() {
+    function dataURLtoFile(dataurl, filename) {
+      var arr = dataurl.split(","),
+        mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]),
+        n = bstr.length,
+        u8arr = new Uint8Array(n);
+
+      while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+      }
+
+      return new File([u8arr], filename, { type: mime });
+    }
+
+    //Usage example:
+
+    const canvas = ref(null);
+    let promoFile = ref();
+    onMounted(() => {
+      function dataURItoBlob(dataURI) {
+        // convert base64/URLEncoded data component to raw binary data held in a string
+        var byteString;
+        if (dataURI.split(",")[0].indexOf("base64") >= 0)
+          byteString = atob(dataURI.split(",")[1]);
+        else byteString = unescape(dataURI.split(",")[1]);
+        // separate out the mime component
+        var mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
+        // write the bytes of the string to a typed array
+        var ia = new Uint8Array(byteString.length);
+        for (var i = 0; i < byteString.length; i++) {
+          ia[i] = byteString.charCodeAt(i);
+        }
+        return new Blob([ia], { type: mimeString });
+      }
+      let dataURL = root.value.toDataURL("image/png");
+      promoFile.value = dataURItoBlob(dataURL);
+      console.log(file);
+    });
     const shareMovie = async () => {
-      console.log(promoPoster);
       try {
         await navigator.share({
           title: "TonightShow - Movie Name",
           text: "awesome movie moviename",
           url: "tonightshow.infy.plus/123",
-          files: promoPoster,
+          files: promoFile.value,
         });
         console.log("Data was shared successfully");
       } catch (err) {
@@ -56,6 +101,7 @@ export default {
     return {
       webShareApiSupported,
       shareMovie,
+      canvas,
     };
   },
 };

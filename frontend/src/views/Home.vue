@@ -27,7 +27,7 @@ export default {
     class="flex md:flex-row flex-col md:justify-start w-full items-center md:h-screen p-5"
   >
     <Header class="md:w-1/6" />
-    <div class="p-5 md:w-3/6">
+    <div class="md:w-3/6">
       <movie :movieData="movie" :loading="loading" />
     </div>
     <div class="md:w-2/6">
