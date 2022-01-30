@@ -13,9 +13,7 @@ const actions = {
     let API_URL = `${import.meta.env.VITE_BASE_API_URL}/movies`;
 
     const { data } = await axios.post(API_URL, { watchedMovies: [1, 2, 3] });
-    data.genres.forEach((genre) => {
-      console.log(genre);
-    });
+
     commit("setMovie", data);
   },
 };

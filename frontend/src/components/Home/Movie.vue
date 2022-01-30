@@ -14,8 +14,8 @@
         <li>Cast : {{ movieData.actors }}</li> -->
         <ul>
           Genre :
-          <li class="px-3" :v-for="genres in movieData.genres">
-            {{ genres }}
+          <li class="px-3" v-for="genre in movieData.genres" :key="genre.id">
+            {{ genre.name }}
           </li>
         </ul>
       </ul>
