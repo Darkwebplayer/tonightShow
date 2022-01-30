@@ -25,7 +25,8 @@ class userController {
 
     try {
       const [movie] = await movieService.generateMovie(watchedMovies);
-      let movieData = await imdb.getMovie(movie.imdb_id);
+
+      let movieData = await imdb.getMovie(movie.tmdb_id);
       console.log(movieData.title);
       return res.status(200).json(movieData);
     } catch (Err) {
