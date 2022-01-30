@@ -3,7 +3,7 @@ const { MovieDb } = require("moviedb-promise");
 const moviedb = new MovieDb(process.env.TMDB_API_KEY);
 class imdbHelper {
   constructor() {
-    const posterUrl = "https://image.tmdb.org/t/p/w500/";
+    this.posterUrl = "https://image.tmdb.org/t/p/w500";
   }
   async getMovie(tmdb_id) {
     return moviedb
@@ -14,6 +14,7 @@ class imdbHelper {
           rating: res.vote_average,
           language: res.original_language,
           genres: res.genres,
+          poster: `${this.posterUrl}${res.poster_path}`,
           id: res.id,
           plot: res.overview,
           streaming: res["watch/providers"],
