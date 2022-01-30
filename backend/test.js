@@ -13,29 +13,29 @@ const Dao = require("./dao/movie");
 //   });
 // }
 
-// const { MovieDb } = require("moviedb-promise");
+const { MovieDb } = require("moviedb-promise");
 
-// const moviedb = new MovieDb(process.env.TMDB_API_KEY);
+const moviedb = new MovieDb(process.env.TMDB_API_KEY);
 
-// const getMovies = async () => {
-//   const movieId = fetch()
-//     .then((res) => {
-//       res.forEach((movie) => {
-//         moviedb
-//           .find({ id: movie.id, external_source: "imdb_id" })
-//           .then((res) => {
-//             let name = res.movie_results[0].title;
-//             let rating = res.movie_results[0].vote_average;
-//             Dao.addMovie(movie.id, name, rating);
-//             console.log(res.movie_results[0].title);
-//           })
-//           .catch(console.error);
-//       });
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// };
-// getMovies();
+const getMovies = async () => {
+  const movieId = fetch()
+    .then((res) => {
+      res.forEach((movie) => {
+        moviedb
+          .find({ id: movie.id, external_source: "imdb_id" })
+          .then((res) => {
+            let name = res.movie_results[0].title;
+            let rating = res.movie_results[0].vote_average;
+            Dao.addMovie(movie.id, name, rating);
+            console.log(res.movie_results[0].title);
+          })
+          .catch(console.error);
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+getMovies();
 
-const res = Dao.getAll();
+// const res = Dao.getAll();
