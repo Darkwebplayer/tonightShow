@@ -5,8 +5,8 @@ class movieService {
     const { imdb_id, moviename, rating, feedback } = movieDto;
     return movieDao.createmovie(imdb_id, moviename, rating, feedback);
   }
-  getmovie(imdb_id) {
-    return movieDao.getMovie(imdb_id);
+  getmovie(tmdb_id) {
+    return movieDao.getMovie(tmdb_id);
   }
   async generateMovie(watchedMovies) {
     let [{ count }] = await movieDao.getCount();
@@ -23,6 +23,7 @@ class movieService {
     }
     let newMovie = generateRandomNum(10);
     let newMovieId = newMovies[newMovie];
+    console.log(newMovieId);
     return movieDao.getMovie(newMovieId);
   }
 }
