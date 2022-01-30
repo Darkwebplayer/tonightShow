@@ -77,7 +77,7 @@ export default {
         }
         return new Blob([ia], { type: mimeString });
       }
-      let dataURL = root.value.toDataURL("image/png");
+      let dataURL = canvas.value.toDataURL("image/png");
       promoFile.value = dataURItoBlob(dataURL);
       console.log(file);
     });
