@@ -62,23 +62,21 @@ export default {
     const canvas = ref(null);
     let promoFile = ref();
     onMounted(() => {
-      function dataURItoBlob(dataURI) {
-        // convert base64/URLEncoded data component to raw binary data held in a string
-        var byteString;
-        if (dataURI.split(",")[0].indexOf("base64") >= 0)
-          byteString = atob(dataURI.split(",")[1]);
-        else byteString = unescape(dataURI.split(",")[1]);
-        // separate out the mime component
-        var mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
-        // write the bytes of the string to a typed array
-        var ia = new Uint8Array(byteString.length);
-        for (var i = 0; i < byteString.length; i++) {
-          ia[i] = byteString.charCodeAt(i);
+      function dataURLtoFile(dataurl, filename) {
+        var arr = dataurl.split(","),
+          mime = arr[0].match(/:(.*?);/)[1],
+          bstr = atob(arr[1]),
+          n = bstr.length,
+          u8arr = new Uint8Array(n);
+
+        while (n--) {
+          u8arr[n] = bstr.charCodeAt(n);
         }
-        return new Blob([ia], { type: mimeString });
+
+        return new File([u8arr], filename, { type: mime });
       }
       let dataURL = canvas.value.toDataURL("image/png");
-      promoFile.value = dataURItoBlob(dataURL);
+      promoFile.value = dataURLtoFile(dataURL, "promo.png");
       console.log(promoFile.value);
     });
     const shareMovie = async () => {
