@@ -15,7 +15,7 @@
         <ul>
           Genre :
           <li class="px-3" :v-for="genres in movieData.genres">
-            {{ genres.name }}
+            {{ genres }}
           </li>
         </ul>
       </ul>
