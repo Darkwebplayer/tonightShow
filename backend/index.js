@@ -19,7 +19,6 @@ app.use(userRoute);
 app.use(movieRoute);
 app.use(authRoute);
 app.get("/", (req, res) => {
-  const rest = Dao.getAll();
   res.send("hi");
 });
 

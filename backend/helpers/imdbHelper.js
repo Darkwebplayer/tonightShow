@@ -1,15 +1,30 @@
-const imdb = require("imdb-api");
+const { MovieDb } = require("moviedb-promise");
+
+const moviedb = new MovieDb(process.env.TMDB_API_KEY);
 class imdbHelper {
-  async getMovie(imdb_id) {
-    try {
-      return await imdb.get(
-        { id: imdb_id },
-        { apiKey: process.env.IMDB_API_KEY }
-      );
-    } catch (err) {
-      console.log(err);
-      return err;
-    }
+  constructor() {
+    const posterUrl = "https://image.tmdb.org/t/p/w500/";
+  }
+  async getMovie(tmdb_id) {
+    return moviedb
+      .movieInfo({ id: tmdb_id, append_to_response: "watch/providers" })
+      .then((res) => {
+        let response = {
+          title: res.title,
+          rating: res.vote_average,
+          language: res.original_language,
+          genres: res.genres,
+          id: res.id,
+          plot: res.overview,
+          streaming: res["watch/providers"],
+        };
+
+        return response;
+      })
+      .catch((err) => {
+        console.log(err);
+        return err;
+      });
   }
 }
 
