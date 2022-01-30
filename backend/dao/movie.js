@@ -14,12 +14,12 @@ class movieDao {
     return id;
   }
   async getMovie(id) {
-    console.log(id);
     const res = await db
       .from("movies")
       .select()
       .where({ id: id })
       .returning("tmdb_id");
+    console.log(res);
     return res;
   }
   async getCount() {
