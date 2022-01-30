@@ -11,7 +11,7 @@ module.exports = {
     connection: {
       connectionString:
         "postgres://pztyooyuzwxfgt:caa68bf3c272126289ee05cde81e3580d4106f718f268e318414ff190af4663b@ec2-18-209-169-66.compute-1.amazonaws.com:5432/d2fo63cjktekk2",
-      ssl: false,
+      ssl: { rejectUnauthorized: false },
     },
     // connection: {
     //   database: "tonightshowdb",
@@ -41,7 +41,7 @@ module.exports = {
     connection: {
       connectionString:
         "postgres://pztyooyuzwxfgt:caa68bf3c272126289ee05cde81e3580d4106f718f268e318414ff190af4663b@ec2-18-209-169-66.compute-1.amazonaws.com:5432/d2fo63cjktekk2",
-      ssl: true,
+      ssl: { rejectUnauthorized: false },
     },
     pool: {
       min: 2,
