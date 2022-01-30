@@ -25,8 +25,9 @@ const getMovies = async () => {
           .find({ id: movie.id, external_source: "imdb_id" })
           .then((res) => {
             let name = res.movie_results[0].title;
+            let id = res.movie_results[0].id;
             let rating = res.movie_results[0].vote_average;
-            Dao.addMovie(movie.id, name, rating);
+            Dao.addMovie(id, name, rating);
             console.log(res.movie_results[0].title);
           })
           .catch(console.error);

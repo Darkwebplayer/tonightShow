@@ -5,7 +5,7 @@
 exports.up = function (knex) {
   return knex.schema.createTable("movies", (table) => {
     table.increments();
-    table.string("imdb_id").notNullable();
+    table.string("tmdb_id").notNullable();
     table.string("name").notNullable().unique();
     table.float("rating", 1).notNullable();
     table.integer("votes").notNullable();
