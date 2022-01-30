@@ -77,9 +77,9 @@ export default {
       }
       let dataURL = canvas.value.toDataURL("image/png");
       promoFile.value = dataURLtoFile(dataURL, "promo.png");
-      console.log(promoFile.value);
     });
     const shareMovie = async () => {
+      console.log(promoFile.value);
       try {
         await navigator.share({
           title: "TonightShow - Movie Name",
