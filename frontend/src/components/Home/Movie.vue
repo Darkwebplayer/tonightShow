@@ -12,9 +12,12 @@
         <li>Rating : {{ movieData.rating }} &#x2B50;</li>
         <!-- <li>Director : {{ movieData.director }}</li>
         <li>Cast : {{ movieData.actors }}</li> -->
-        <li>
-          Genre : <span :v-for="genres in movieData.genres">{{ genres }}</span>
-        </li>
+        <ul>
+          Genre :
+          <li class="px-3" :v-for="genres in movieData.genres">
+            {{ genres.name }}
+          </li>
+        </ul>
       </ul>
       <div class="text-white py-3">
         <span class="font-bold">Plot</span>:{{ movieData.plot }}
