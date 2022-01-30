@@ -85,7 +85,6 @@ export default {
           title: "TonightShow - Movie Name",
           text: "awesome movie moviename",
           url: "tonightshow.infy.plus/123",
-          files: promoFile.value,
         });
         console.log("Data was shared successfully");
       } catch (err) {
