@@ -32,13 +32,18 @@
   </div>
   <div class="text-center text-white font-bold" v-if="loading">LOADING</div>
 
-  <div class="" ref="canvas">
-    <img
-      @load="imageLoaded"
-      :src="movieData.poster"
-      alt=""
-      class="w-72 mx-auto my-5 rounded-md"
-    />
+  <div class="">
+    <div class="p-5 bg-red-400 text-white" ref="canvas">
+      <p class="font-bold py-5">Recommended to Watch</p>
+      <img
+        @load="imageLoaded"
+        :src="movieData.poster"
+        alt=""
+        class="w-72 mx-auto my-5 rounded-md"
+      />
+      <p class="py-5">tonghtshow.vercel.app</p>
+      <p class="py-5">powered by infy.plus</p>
+    </div>
   </div>
 </template>
 <script>
