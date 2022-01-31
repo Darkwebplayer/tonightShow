@@ -67,7 +67,7 @@ export default {
     let canvas = ref(null);
     let poster = ref(null);
     onMounted(() => {
-      console.log(canvas.value);
+      console.log(poster.value);
 
       domtoimage
         .toPng(canvas.value)
