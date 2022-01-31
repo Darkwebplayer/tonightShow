@@ -33,7 +33,7 @@
   <div class="text-center text-white font-bold" v-if="loading">LOADING</div>
   <div class="" ref="canvas">
     <img
-      ref="poster"
+      @load="imageLoaded"
       :src="movieData.poster"
       alt=""
       class="w-72 mx-auto my-5 rounded-md"
@@ -65,18 +65,9 @@ export default {
     //Usage example:
     let promoFile = ref();
     let canvas = ref(null);
-    let poster = ref(null);
-    onMounted(() => {
-      console.log(poster.value.onload);
-
-      domtoimage
-        .toPng(canvas.value)
-        .then((res) => {
-          console.log(res);
-        })
-        .catch(console.log);
-    });
-
+    let imageLoaded = () => {
+      console.log("image loaded");
+    };
     // onMounted(() => {
     // function dataURLtoFile(dataurl, filename) {
     //   var arr = dataurl.split(","),
@@ -116,7 +107,7 @@ export default {
       webShareApiSupported,
       shareMovie,
       canvas,
-      poster,
+      imageLoaded,
     };
   },
 };
