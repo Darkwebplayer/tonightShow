@@ -32,7 +32,12 @@
   </div>
   <div class="text-center text-white font-bold" v-if="loading">LOADING</div>
   <div class="" ref="canvas">
-    <img :src="movieData.poster" alt="" class="w-72 mx-auto my-5 rounded-md" />
+    <img
+      ref="poster"
+      :src="movieData.poster"
+      alt=""
+      class="w-72 mx-auto my-5 rounded-md"
+    />
   </div>
 </template>
 <script>
@@ -59,16 +64,18 @@ export default {
     }
     //Usage example:
     let promoFile = ref();
-    const canvas = ref(null);
-
+    let canvas = ref(null);
+    let poster = ref(null);
     onMounted(() => {
       console.log(canvas.value);
-      domtoimage
-        .toPng(canvas.value)
-        .then((res) => {
-          console.log(res);
-        })
-        .catch(console.log);
+      poster.value.onload(() => {
+        domtoimage
+          .toPng(canvas.value)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch(console.log);
+      });
     });
 
     // onMounted(() => {
@@ -110,6 +117,7 @@ export default {
       webShareApiSupported,
       shareMovie,
       canvas,
+      poster,
     };
   },
 };
