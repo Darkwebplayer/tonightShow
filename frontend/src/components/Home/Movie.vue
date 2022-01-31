@@ -67,7 +67,7 @@ export default {
         .toPng(element)
         .then((dataurl) => {
           console.log(dataurl);
-          promoFile.value = dataURLtoFile(dataurl);
+          promoFile.value = dataURLtoFile(dataurl, "promo.png");
         })
         .catch(console.log);
     });
