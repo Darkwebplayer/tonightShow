@@ -26,7 +26,7 @@
         <span class="font-bold">Plot</span>:{{ movieData.plot }}
       </div>
       <div class="">
-        <button @click="shareMovie(movieData)">Share</button>
+        <button-large @click="shareMovie(movieData)" btnText="Share &#x2197;" />
       </div>
     </div>
   </div>
@@ -95,9 +95,9 @@ export default {
     const shareMovie = async (movieData) => {
       try {
         await navigator.share({
-          title: `Chekout the awesme ${movieData.title}`,
-          text: `${movieData.plot.substr(0, 20)}...`,
-          url: `tonightshw.vercel.app/${movieData.tmdb_id}`,
+          title: `Chekout the awesome <b>${movieData.title}</b> <br/>`,
+          text: `${movieData.plot.substr(0, 50)}...`,
+          url: `tonightshw.vercel.app/${movieData.id}`,
           files: [promoFile.value],
         });
         console.log("Data was shared successfully");
