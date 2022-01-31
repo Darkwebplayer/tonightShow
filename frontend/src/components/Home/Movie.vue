@@ -67,6 +67,12 @@ export default {
     let canvas = ref(null);
     let imageLoaded = () => {
       console.log("image loaded");
+      domtoimage
+        .toPng(canvas, value)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch(console.log);
     };
     // onMounted(() => {
     // function dataURLtoFile(dataurl, filename) {
