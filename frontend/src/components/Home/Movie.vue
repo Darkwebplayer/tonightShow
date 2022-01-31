@@ -70,7 +70,8 @@ export default {
       domtoimage
         .toPng(canvas.value)
         .then((res) => {
-          console.log(res);
+          promo.value = dataURLtoFile(res);
+          console.log(promoFile.value);
         })
         .catch(console.log);
     };
