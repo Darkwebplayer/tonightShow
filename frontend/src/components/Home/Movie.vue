@@ -70,8 +70,8 @@ export default {
         })
         .catch(console.log);
     };
-    onMounted(() => {
-      promoFile.value = getFile();
+    onMounted(async () => {
+      promoFile.value = await getFile();
     });
 
     // onMounted(() => {
