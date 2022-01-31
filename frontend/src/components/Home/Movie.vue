@@ -31,13 +31,15 @@
     </div>
   </div>
   <div class="text-center text-white font-bold" v-if="loading">LOADING</div>
-  <div class="" ref="canvas">
-    <img
-      @load="imageLoaded"
-      :src="movieData.poster"
-      alt=""
-      class="w-72 mx-auto my-5 rounded-md"
-    />
+  <div style="width: 0; height: 0; overflow: hidden">
+    <div class="" ref="canvas">
+      <img
+        @load="imageLoaded"
+        :src="movieData.poster"
+        alt=""
+        class="w-72 mx-auto my-5 rounded-md"
+      />
+    </div>
   </div>
 </template>
 <script>
