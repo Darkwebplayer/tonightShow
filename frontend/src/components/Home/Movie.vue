@@ -31,53 +31,51 @@
     </div>
   </div>
   <div class="text-center text-white font-bold" v-if="loading">LOADING</div>
-  <canvas class="" ref="canvas">
-    <img :src="movieData.poster" alt="" class="w-72 mx-auto my-5 rounded-md"
-  /></canvas>
+  <div class="" ref="canvas">
+    <img :src="movieData.poster" alt="" class="w-72 mx-auto my-5 rounded-md" />
+  </div>
 </template>
 <script>
 import { computed, onMounted, ref } from "@vue/runtime-core";
 import ButtonLarge from "../ButtonLarge.vue";
+import { vueHtml2canvas } from "vue-html2canvas";
 export default {
   props: ["movieData", "loading"],
   components: { ButtonLarge },
   emits: ["another"],
   setup() {
-    function dataURLtoFile(dataurl, filename) {
-      var arr = dataurl.split(","),
-        mime = arr[0].match(/:(.*?);/)[1],
-        bstr = atob(arr[1]),
-        n = bstr.length,
-        u8arr = new Uint8Array(n);
-
-      while (n--) {
-        u8arr[n] = bstr.charCodeAt(n);
-      }
-
-      return new File([u8arr], filename, { type: mime });
-    }
-
     //Usage example:
-
-    const canvas = ref(null);
     let promoFile = ref();
+    const getFile = async () => {
+      const canvas = ref(null);
+      const element = canvas.value;
+      const options = {
+        type: "dataURL",
+      };
+      return vueHtml2canvas(element, options);
+    };
     onMounted(() => {
-      function dataURLtoFile(dataurl, filename) {
-        var arr = dataurl.split(","),
-          mime = arr[0].match(/:(.*?);/)[1],
-          bstr = atob(arr[1]),
-          n = bstr.length,
-          u8arr = new Uint8Array(n);
-
-        while (n--) {
-          u8arr[n] = bstr.charCodeAt(n);
-        }
-
-        return new File([u8arr], filename, { type: mime });
-      }
-      let dataURL = canvas.value.toDataURL("image/png");
-      promoFile.value = dataURLtoFile(dataURL, "promo.png");
+      promoFile.value = getFile();
     });
+
+    // onMounted(() => {
+    //   function dataURLtoFile(dataurl, filename) {
+    //     var arr = dataurl.split(","),
+    //       mime = arr[0].match(/:(.*?);/)[1],
+    //       bstr = atob(arr[1]),
+    //       n = bstr.length,
+    //       u8arr = new Uint8Array(n);
+
+    //     while (n--) {
+    //       u8arr[n] = bstr.charCodeAt(n);
+    //     }
+
+    //     return new File([u8arr], filename, { type: mime });
+    //   }
+    //   let dataURL = canvas.value.toDataURL("image/png");
+    //   promoFile.value = dataURLtoFile(dataURL, "promo.png");
+    // });
+
     const shareMovie = async () => {
       console.log(promoFile.value);
       try {
