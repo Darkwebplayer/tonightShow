@@ -64,6 +64,8 @@ export default {
     onMounted(() => {
       console.log("mounted");
       element.value = canvas.value;
+      let image = domtoimage.toPng(element.value);
+      console.log(image);
     });
 
     // onMounted(() => {
