@@ -68,7 +68,7 @@ export default {
     let imageLoaded = () => {
       console.log("image loaded");
       domtoimage
-        .toPng(canvas, value)
+        .toPng(canvas.value)
         .then((res) => {
           console.log(res);
         })
