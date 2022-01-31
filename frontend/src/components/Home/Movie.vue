@@ -62,8 +62,8 @@ export default {
     const canvas = ref(null);
     const element = ref();
     onMounted(async () => {
-      console.log("mounted");
       element.value = canvas.value;
+      console.log(element.value);
       let image = await domtoimage.toPng(element.value);
       console.log(image);
     });
