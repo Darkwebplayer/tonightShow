@@ -84,13 +84,18 @@ export default {
     //   promoFile.value = dataURLtoFile(dataURL, "promo.png");
     // });
     const domImage = () => {
-      return domtoimage
-        .toPng(element.value)
-        .then((dataurl) => {
-          console.log(dataurl);
-          return dataurl;
-        })
-        .catch(console.log);
+      // return domtoimage
+      //   .toPng(element.value)
+      //   .then((dataurl) => {
+      //     console.log(dataurl);
+      //     return dataurl;
+      //   })
+      //   .catch(console.log);
+      return new Promise(() => {
+        domtoimage.toPng(element.value).then((dataurl) => {
+          resolve(dataurl);
+        });
+      });
     };
     const shareMovie = async () => {
       domImage()
