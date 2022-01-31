@@ -26,7 +26,7 @@
         <span class="font-bold">Plot</span>:{{ movieData.plot }}
       </div>
       <div class="">
-        <button @click="shareMovie">Share</button>
+        <button @click="shareMovie(movieData)">Share</button>
       </div>
     </div>
   </div>
@@ -70,8 +70,7 @@ export default {
       domtoimage
         .toPng(canvas.value)
         .then((res) => {
-          promoFile.value = dataURLtoFile(res);
-          console.log(promoFile.value);
+          promoFile.value = dataURLtoFile(res, "promo.png");
         })
         .catch(console.log);
     };
@@ -93,12 +92,12 @@ export default {
     //   promoFile.value = dataURLtoFile(dataURL, "promo.png");
     // });
 
-    const shareMovie = async () => {
+    const shareMovie = async (movieData) => {
       try {
         await navigator.share({
-          title: "TonightShow - Movie Name",
-          text: "awesome movie moviename",
-          url: "tonightshow.infy.plus/123",
+          title: `Chekout the awesme ${movieData.title}`,
+          text: `${movieData.plot.substr(0, 20)}...`,
+          url: `tonightshw.vercel.app/${movieData.tmdb_id}`,
           files: [promoFile.value],
         });
         console.log("Data was shared successfully");
