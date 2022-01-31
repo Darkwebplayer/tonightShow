@@ -64,7 +64,7 @@ export default {
     onMounted(async () => {
       element.value = canvas.value;
       console.log(element.value);
-      let image = await domtoimage.toPng(element.value);
+      let image = await domImage(element.value);
       console.log(image);
     });
 
@@ -85,7 +85,7 @@ export default {
     //   let dataURL = canvas.value.toDataURL("image/png");
     //   promoFile.value = dataURLtoFile(dataURL, "promo.png");
     // });
-    const domImage = () => {
+    const domImage = (el) => {
       // return domtoimage
       //   .toPng(element.value)
       //   .then((dataurl) => {
@@ -94,10 +94,11 @@ export default {
       //   })
       //   .catch(console.log);
       return new Promise((resolve, reject) => {
-        let data_url = domtoimage.toPng(element.value).then((dataurl) => {
+        let data_url = domtoimage.toPng(el).then((dataurl) => {
+          resolve(data_url);
           return dataurl;
         });
-        resolve(data_url);
+        return data_url;
       });
     };
     const shareMovie = async () => {
