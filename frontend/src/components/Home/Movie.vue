@@ -60,18 +60,10 @@ export default {
     //Usage example:
     let promoFile = ref();
     const canvas = ref(null);
-
+    const element = ref();
     onMounted(() => {
       console.log("mounted");
-      const element = canvas.value;
-
-      domtoimage
-        .toPng(element)
-        .then((dataurl) => {
-          console.log(dataurl);
-          promoFile.value = dataURLtoFile(dataurl, "promo.png");
-        })
-        .catch(console.log);
+      element = canvas.value;
     });
 
     // onMounted(() => {
@@ -91,8 +83,17 @@ export default {
     //   let dataURL = canvas.value.toDataURL("image/png");
     //   promoFile.value = dataURLtoFile(dataURL, "promo.png");
     // });
-
+    const domImage = () => {
+      domtoimage
+        .toPng(element.value)
+        .then((dataurl) => {
+          console.log(dataurl);
+          promoFile.value = dataURLtoFile(dataurl, "promo.png");
+        })
+        .catch(console.log);
+    };
     const shareMovie = async () => {
+      domImage();
       console.log(promoFile.value);
       try {
         await navigator.share({
