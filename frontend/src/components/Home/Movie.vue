@@ -68,14 +68,13 @@ export default {
     let poster = ref(null);
     onMounted(() => {
       console.log(canvas.value);
-      poster.value.onload(() => {
-        domtoimage
-          .toPng(canvas.value)
-          .then((res) => {
-            console.log(res);
-          })
-          .catch(console.log);
-      });
+
+      domtoimage
+        .toPng(canvas.value)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch(console.log);
     });
 
     // onMounted(() => {
