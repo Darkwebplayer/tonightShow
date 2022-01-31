@@ -33,7 +33,7 @@
   <div class="text-center text-white font-bold" v-if="loading">LOADING</div>
 
   <div class="">
-    <div class="p-5 bg-red-400 text-white text-center" ref="canvas">
+    <div class="p-5 bg-stone-700 text-white text-center" ref="canvas">
       <p class="font-bold py-2 capitalize text-lg tracking-widest">
         Recommended to Watch
       </p>
@@ -41,7 +41,7 @@
         @load="imageLoaded"
         :src="movieData.poster"
         alt=""
-        class="w-72 mx-auto my-5 rounded-md"
+        class="w-48 mx-auto my-5 rounded-md shadow-sm"
       />
       <div class="flex justify-between">
         <p class="py-2">tonghtshow.vercel.app</p>
