@@ -84,16 +84,25 @@ export default {
     //   promoFile.value = dataURLtoFile(dataURL, "promo.png");
     // });
     const domImage = () => {
-      domtoimage
+      return domtoimage
         .toPng(element.value)
         .then((dataurl) => {
           console.log(dataurl);
-          promoFile.value = dataURLtoFile(dataurl, "promo.png");
+          return dataurl;
         })
         .catch(console.log);
     };
     const shareMovie = async () => {
-      domImage();
+      domImage()
+        .then((res) => {
+          dataURLtoFile(res, "promo.png")
+            .then((res) => {
+              console.log(res);
+              promoFile.value = res;
+            })
+            .catch(console.log);
+        })
+        .catch(console.log);
       console.log(promoFile.value);
       try {
         await navigator.share({
