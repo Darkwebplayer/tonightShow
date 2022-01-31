@@ -105,7 +105,7 @@ export default {
     const shareMovie = async (movieData) => {
       try {
         await navigator.share({
-          title: `Chekout the awesome <b>${movieData.title}</b> <br/>`,
+          title: `Chekout the awesome ${movieData.title}`,
           url: `tonightshw.vercel.app/${movieData.id}`,
           files: [promoFile.value],
         });
