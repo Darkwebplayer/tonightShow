@@ -63,7 +63,7 @@ export default {
     const element = ref();
     onMounted(() => {
       console.log("mounted");
-      element = canvas.value;
+      element.value = canvas.value;
     });
 
     // onMounted(() => {
