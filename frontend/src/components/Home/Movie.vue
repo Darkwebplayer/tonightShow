@@ -97,7 +97,6 @@ export default {
       try {
         await navigator.share({
           title: `Chekout the awesome <b>${movieData.title}</b> <br/>`,
-          text: `${movieData.plot.substr(0, 50)}...`,
           url: `tonightshw.vercel.app/${movieData.id}`,
           files: [promoFile.value],
         });
