@@ -60,12 +60,15 @@ export default {
     //Usage example:
     let promoFile = ref();
     const canvas = ref(null);
-    const element = ref();
-    onMounted(async () => {
-      element.value = canvas.value;
-      console.log(element.value);
-      let image = await domImage(element.value);
-      console.log(image);
+
+    onMounted(() => {
+      console.log(canvas.value);
+      domtoimage
+        .toPng(canvas.value)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch(console.log);
     });
 
     // onMounted(() => {
@@ -85,34 +88,8 @@ export default {
     //   let dataURL = canvas.value.toDataURL("image/png");
     //   promoFile.value = dataURLtoFile(dataURL, "promo.png");
     // });
-    const domImage = (el) => {
-      // return domtoimage
-      //   .toPng(element.value)
-      //   .then((dataurl) => {
-      //     console.log(dataurl);
-      //     return dataurl;
-      //   })
-      //   .catch(console.log);
-      return new Promise((resolve, reject) => {
-        let data_url = domtoimage.toPng(el).then((dataurl) => {
-          resolve(data_url);
-          return dataurl;
-        });
-        return data_url;
-      });
-    };
+
     const shareMovie = async () => {
-      domImage()
-        .then((res) => {
-          dataURLtoFile(res, "promo.png")
-            .then((res) => {
-              console.log(res);
-              promoFile.value = res;
-            })
-            .catch(console.log);
-        })
-        .catch(console.log);
-      console.log(promoFile.value);
       try {
         await navigator.share({
           title: "TonightShow - Movie Name",
