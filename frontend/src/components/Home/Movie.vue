@@ -92,9 +92,10 @@ export default {
       //   })
       //   .catch(console.log);
       return new Promise(() => {
-        domtoimage.toPng(element.value).then((dataurl) => {
-          resolve(dataurl);
+        let data_url = domtoimage.toPng(element.value).then((dataurl) => {
+          return dataurl;
         });
+        resolve(data_url);
       });
     };
     const shareMovie = async () => {
