@@ -62,7 +62,7 @@ export default {
     const canvas = ref(null);
     const getFile = async () => {
       const element = canvas.value;
-      domtoimage
+      return domtoimage
         .toPng(element)
         .then((dataurl) => {
           console.log(dataurl);
