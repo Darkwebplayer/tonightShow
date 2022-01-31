@@ -61,11 +61,11 @@ export default {
     let promoFile = ref();
     const canvas = ref(null);
 
-    onMounted(async () => {
+    onMounted(() => {
       console.log("mounted");
       const element = canvas.value;
-      console.log(element);
-      await domtoimage
+
+      domtoimage
         .toPng(element)
         .then((dataurl) => {
           console.log(dataurl);
