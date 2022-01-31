@@ -60,18 +60,16 @@ export default {
     //Usage example:
     let promoFile = ref();
     const canvas = ref(null);
-    const getFile = async () => {
+
+    onMounted(async () => {
       const element = canvas.value;
-      return domtoimage
+      domtoimage
         .toPng(element)
         .then((dataurl) => {
           console.log(dataurl);
-          return dataURLtoFile(dataurl);
+          promoFile.value = dataURLtoFile(dataurl);
         })
         .catch(console.log);
-    };
-    onMounted(async () => {
-      promoFile.value = await getFile();
     });
 
     // onMounted(() => {
