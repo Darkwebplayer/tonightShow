@@ -91,7 +91,7 @@ export default {
       //     return dataurl;
       //   })
       //   .catch(console.log);
-      return new Promise(() => {
+      return new Promise((resolve, reject) => {
         let data_url = domtoimage.toPng(element.value).then((dataurl) => {
           return dataurl;
         });
