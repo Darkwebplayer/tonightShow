@@ -24,10 +24,10 @@ class userController {
     let { watchedMovies } = req.body;
 
     try {
-      const [movie] = await movieService.generateMovie(watchedMovies);
+      const movie = await movieService.generateMovie(watchedMovies);
+      let [movieDat] = movie.rows;
+      let movieData = await imdb.getMovie(movieDat.tmdb_id);
 
-      let movieData = await imdb.getMovie(movie.tmdb_id);
-      console.log(movieData.title);
       return res.status(200).json(movieData);
     } catch (Err) {
       return res.status(500).json({ error: Err });

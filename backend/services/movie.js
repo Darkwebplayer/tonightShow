@@ -8,23 +8,11 @@ class movieService {
   getmovie(tmdb_id) {
     return movieDao.getMovie(tmdb_id);
   }
-  async generateMovie(watchedMovies) {
+  async generateMovie(watchedMovies = []) {
     let [{ count }] = await movieDao.getCount();
+    let RandomMovie = await movieDao.getRandom(count, watchedMovies);
 
-    let newMovies = [];
-    while (newMovies.length <= 10) {
-      let num = generateRandomNum(count);
-
-      watchedMovies.forEach((wMovie) => {
-        if (wMovie !== num) {
-          newMovies.push(num);
-        }
-      });
-    }
-    let newMovie = generateRandomNum(10);
-    let newMovieId = newMovies[newMovie];
-    console.log(newMovieId);
-    return movieDao.getMovie(newMovieId);
+    return RandomMovie;
   }
 }
 module.exports = new movieService();

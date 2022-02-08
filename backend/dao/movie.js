@@ -32,5 +32,24 @@ class movieDao {
       console.log(err);
     }
   }
+  // WITH v1 AS (SELECT * FROM test WHERE id NOT IN (1,2,3)) SELECT * FROM v1 OFFSET floor(random()*16) LIMIT 1;
+  async getRandom(count, watchlist = []) {
+    try {
+      let query = "";
+      if (watchlist.length < 1) {
+        query = `SELECT tmdb_id FROM movies OFFSET floor(random()*${count}) LIMIT 1;`;
+      } else {
+        query = `WITH v1 AS (SELECT * FROM movies WHERE id NOT IN (${watchlist})) SELECT tmdb_id FROM v1 OFFSET floor(random()*${count}) LIMIT 1;`;
+      }
+      let res = { rows: [] };
+      while (res.rows.length < 1) {
+        res = await db.raw(query);
+      }
+
+      return res;
+    } catch (err) {
+      console.log(err);
+    }
+  }
 }
 module.exports = new movieDao();
