@@ -4,7 +4,6 @@ const cookieParser = require("cookie-parser");
 require("dotenv").config();
 const Dao = require("./dao/movie");
 const cors = require("cors");
-
 const corsOptions = {
   origin: process.env.CLIENT_ADDRESS,
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
@@ -20,7 +19,7 @@ app.use(userRoute);
 app.use(movieRoute);
 app.use(authRoute);
 app.get("/", (req, res) => {
-  res.send("hi");
+  res.redirect("https://tonightshow.netlify.app");
 });
 
 app.listen(process.env.PORT || 5000, () => {
