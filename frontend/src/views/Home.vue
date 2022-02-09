@@ -9,14 +9,18 @@ export default {
   setup() {
     const store = useStore();
     store.dispatch("fetchMovie");
-
-    const movie = computed(() => store.getters.getMovie);
-    const loading = computed(() => {
+    let movie = computed(() => store.getters.getMovie);
+    let loading = computed(() => {
       return store.getters.getLoading;
     });
+    const handleNewMovie = () => {
+      store.dispatch("fetchMovie");
+    };
+
     return {
       movie: movie,
       loading,
+      handleNewMovie,
     };
   },
 };
@@ -28,7 +32,7 @@ export default {
   >
     <Header class="md:w-1/6" />
     <div class="md:w-3/6">
-      <movie :movieData="movie" :loading="loading" />
+      <movie :movieData="movie" :loading="loading" @another="handleNewMovie" />
     </div>
     <div class="md:w-2/6">
       <watchlist class="p-5" />

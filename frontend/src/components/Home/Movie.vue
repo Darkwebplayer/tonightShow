@@ -1,51 +1,80 @@
 <template>
-  <div
-    class="flex flex-col items-center md:max-w-3xl mx-auto bg-blueFG p-5 w-full"
-    v-if="movieData.title"
-  >
-    <h3 class="text-center text-white font-bold text-xl">
-      {{ movieData.title }}({{ movieData.year }})
-    </h3>
-    <img :src="movieData.poster" alt="" class="w-72 mx-auto my-5 rounded-md" />
-    <div class="mx-auto max-w-2xl text-center">
-      <ul class="mx-auto text-white font-bold py-3">
-        <li>Rating : {{ movieData.rating }} &#x2B50;</li>
-        <!-- <li>Director : {{ movieData.director }}</li>
-        <li>Cast : {{ movieData.actors }}</li> -->
-        <ul class="flex flex-wrap">
-          Genre :
-          <li class="px-3" v-for="genre in movieData.genres" :key="genre.id">
-            {{ genre.name }}
-          </li>
-        </ul>
-      </ul>
-      <div class="">
-        <button-large btnText="New Movie &#x267B;" @click="$emit('another')" />
-      </div>
-      <div class="text-white py-3">
-        <span class="font-bold">Plot</span>:{{ movieData.plot }}
-      </div>
-      <div class="">
-        <button-large @click="shareMovie(movieData)" btnText="Share &#x2197;" />
-      </div>
-    </div>
-  </div>
   <div class="text-center text-white font-bold" v-if="loading">LOADING</div>
-
-  <div class="">
-    <div class="p-5 bg-stone-700 text-white text-center" ref="canvas">
-      <p class="font-bold py-2 capitalize text-lg tracking-widest">
-        Recommended to Watch
-      </p>
+  <div v-else>
+    <div
+      class="flex flex-col items-center md:max-w-3xl mx-auto bg-blueFG p-5 w-full"
+      v-if="movieData.title"
+    >
+      <h3 class="text-center text-white font-bold text-xl">
+        {{ movieData.title }}({{ movieData.year }})
+      </h3>
       <img
-        @load="imageLoaded"
         :src="movieData.poster"
         alt=""
-        class="w-48 mx-auto my-5 rounded-md shadow-sm"
+        class="w-72 mx-auto my-5 rounded-md"
       />
-      <div class="flex justify-between">
-        <p class="py-2">tonghtshow.vercel.app</p>
-        <p class="py-2">powered by infy.plus</p>
+      <div class="mx-auto max-w-2xl text-center">
+        <ul class="mx-auto text-white font-bold py-3">
+          <li>Rating : {{ movieData.rating }} &#x2B50;</li>
+          <!-- <li>Director : {{ movieData.director }}</li>
+        <li>Cast : {{ movieData.actors }}</li> -->
+          <ul class="flex flex-wrap">
+            Genre :
+            <li class="px-3" v-for="genre in movieData.genres" :key="genre.id">
+              {{ genre.name }}
+            </li>
+          </ul>
+        </ul>
+        <div class="">
+          <button-large
+            btnText="New Movie &#x267B;"
+            @click="$emit('another')"
+          />
+        </div>
+        <div class="text-white py-3">
+          <span class="font-bold">Plot</span>:{{ movieData.plot }}
+        </div>
+        <div class="">
+          <button-large
+            @click="shareMovie(movieData)"
+            btnText="Share &#x2197;"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="absolute -z-10 top-0">
+      <div class="p-5 bg-stone-700 text-white text-center" ref="canvas">
+        <p class="font-bold py-2 capitalize text-lg tracking-widest">
+          Recommended to Watch
+        </p>
+        <img
+          @load="imageLoaded"
+          :src="movieData.poster"
+          alt=""
+          class="w-48 mx-auto my-5 rounded-md shadow-sm"
+        />
+        <div class="">
+          <div class="text-center font-bold text-lg">
+            {{ movieData.title }}({{ movieData.year }})
+          </div>
+          <div
+            class="text-center font-bold text-sm list-none flex-wrap flex justify-center items-center"
+          >
+            Genre :
+            <li
+              class="font-normal px-1"
+              v-for="genre in movieData.genres"
+              :key="genre.id"
+            >
+              {{ genre.name }},
+            </li>
+          </div>
+          <div class=""></div>
+        </div>
+        <div class="flex justify-between">
+          <p class="py-2 text-sm font-bold">tonghtshow.netlify.app</p>
+          <p class="py-2 text-sm font-bold">powered by infy.plus</p>
+        </div>
       </div>
     </div>
   </div>
