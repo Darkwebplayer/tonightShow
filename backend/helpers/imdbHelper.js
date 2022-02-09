@@ -17,7 +17,7 @@ class imdbHelper {
           poster: `${this.posterUrl}${res.poster_path}`,
           id: res.id,
           plot: res.overview,
-          year: res.release_date,
+          year: res.release_date.split("-")[0],
           streaming: res["watch/providers"],
         };
 
