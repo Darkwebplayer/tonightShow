@@ -42,7 +42,7 @@
         </div>
       </div>
     </div>
-    <div class="absolute -z-10 top-0">
+    <div class="-z-10 top-0">
       <div class="p-5 bg-stone-700 text-white text-center" ref="canvas">
         <p class="font-bold py-2 capitalize text-lg tracking-widest">
           Recommended to Watch
@@ -55,7 +55,7 @@
         />
         <div class="">
           <div class="text-center font-bold text-lg">
-            {{ movieData.title }}({{ movieData.year }})
+            {{ movieData.title }}({{ `${movieData.year}` }})
           </div>
           <div
             class="text-center font-bold text-sm list-none flex-wrap flex justify-center items-center"
@@ -71,9 +71,12 @@
           </div>
           <div class=""></div>
         </div>
-        <div class="flex justify-between">
-          <p class="py-2 text-sm font-bold">tonghtshow.netlify.app</p>
-          <p class="py-2 text-sm font-bold">powered by infy.plus</p>
+        <div class="flex justify-between items-end text-xs font-semibold py-2">
+          <div class="flex flex-col justify-center items-center">
+            <img src="/img/logo.png" alt="" class="w-10 -rotate-12" />
+            <p class="py-2">tonihtshow.netlify.app</p>
+          </div>
+          <p class="py-2">powered by infy.plus</p>
         </div>
       </div>
     </div>
