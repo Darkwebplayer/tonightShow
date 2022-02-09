@@ -1,1 +1,1 @@
- web: ./backend/yarn run dev
+ web: ./backend/yarn run start
