@@ -1,13 +1,13 @@
 const db = require("../db/db");
 class movieDao {
-  async addMovie(tmdb_id, moviename, rating, feedback) {
+  async addMovie(tmdb_id, moviename, rating, feedback = "", votes = 10) {
     console.log(tmdb_id, moviename, rating);
     const [id] = await db("movies")
       .insert({
         tmdb_id: tmdb_id,
         name: moviename,
         rating: rating,
-        votes: 10,
+        votes: votes,
         feedback: feedback,
       })
       .returning("id");
